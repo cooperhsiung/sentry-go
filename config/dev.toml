@@ -1,0 +1,39 @@
+name = "sentry"
+
+[[tasks]]
+    project = "taobao"
+    type = "numeric"
+    field = "huabei"
+    every = "10m"
+    offset = "0m"
+    period = "10m"
+    title = "{project} {field}"
+    message = "{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}"
+    post = ""
+    mail = ["-@.com"]
+    wechat = [""]
+    [[tasks.rules]]
+        expr = "MEAN() < 3000"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "MEAN() < 2000"
+        level = "crit"
+
+[[tasks]]
+    project = "taobao"
+    type = "numeric"
+    field = "huabei"
+    every = "10m"
+    offset = "0m"
+    period = "10m"
+    title = "{project} {field}"
+    message = "{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}"
+    post = ""
+    mail = ["-@.com"]
+    wechat = [""]
+    [[tasks.rules]]
+        expr = "MEAN() < 50"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "MEAN() < 20"
+        level = "crit"

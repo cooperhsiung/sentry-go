@@ -1,0 +1,104 @@
+name = "sentry"
+url = "http://127.0.0.1:8086"
+username = ""
+password = ""
+db = "sentry"
+policy = "one_day"
+tempdb = "sentry_temp"
+
+[[tasks]]
+    project = "taobao"
+    type = "numberic"
+    field = "huabei"
+    every="10m"
+    offset="0m"
+    period="10m"
+    title='{project} {field}'
+    message='{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}'
+    post=""
+    mail=["-@-.com"]
+    wechat = ["-","-"]
+    [[tasks.rules]]
+        expr = "MEAN() < 2000"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "MEAN() < 1000"
+        level = "crit"
+
+[[tasks]]
+    project = "taobao"
+    type = "numberic"
+    field = "addrs"
+    every="10m"
+    offset="0m"
+    period="10m"
+    title='{project} {field}'
+    message='{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}'
+    post=""
+    mail = ["-@-.com"]
+    wechat = ["-","-"]
+    [[tasks.rules]]
+        expr = "MEAN() < 5"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "MEAN() < 2"
+        level = "crit"
+
+
+[[tasks]]
+    project = "taobao"
+    type = "numberic"
+    field = "orders"
+    every="10m"
+    offset="0m"
+    period="10m"
+    title='{project} {field}'
+    message='{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}'
+    post=""
+    mail=["-@-.com"]
+    wechat = ["-","-"]
+    [[tasks.rules]]
+        expr = "MEAN() < 50"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "MEAN() < 20"
+        level = "crit"
+
+
+[[tasks]]
+    project = "operator"
+    type = "categorical"
+    field = "login_msg"
+    every="10m"
+    offset="0m"
+    period="10m"
+    title='{project} {field}'
+    message='{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}'
+    post=""
+    mail=["-@-.com"]
+    wechat = ["-","-"]
+    [[tasks.rules]]
+        expr = "PERCENT(授权成功) < 0.2"
+        level = "warn"
+    [[tasks.rules]]
+        expr = "PERCENT(授权成功) < 0.1"
+        level = "crit"
+
+[[tasks]]
+    project = "operator"
+    type = "categorical"
+    field = "crawl_msg"
+    every="10m"
+    offset="0m"
+    period="10m"
+    title='{project} {field}'
+    message='{project} {field} {level} {value} {time:YYYY-MM-DD hh:mm:ss}'
+    post=""
+    mail=["-@-.com"]
+    wechat = ["-","-"]
+    [[tasks.rules]]
+        condition = "PERCENT(爬取结束) < 0.2"
+        level = "warn"
+    [[tasks.rules]]
+        condition = "PERCENT(爬取结束) < 0.1"
+        level = "crit"
