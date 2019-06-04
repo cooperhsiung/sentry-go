@@ -5,7 +5,7 @@ A handy metrics monitor.
 ### Install
 
 ```
-git clone http://gitlab.100credit.cn/crawler/sentry-go.git
+git clone https://github.com/cooperhsiung/sentry-go.git
 cd sentry-go
 export GO111MODULE=on
 export GOPROXY=https://goproxy.io
@@ -22,6 +22,6 @@ go run collector.go // timer for collector
 
 ### Directory
 
-dev => $HOME/go/src/gitlab.com/sentry.go
+dev => \$HOME/go/src/gitlab.com/sentry.go
 
 pord => /opt/srv/sentry-go
